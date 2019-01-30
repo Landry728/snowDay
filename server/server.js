@@ -1,8 +1,16 @@
 const express = require('express');
 const path = require('path');
-
-const app = express();
+const bodyParser = require('body-parser');
 const port = '3000';
+
+let app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.post('/sendName', (req, res) => {
+console.log(req.body.sendName)
+res.send("I'll try to remember that!");
+});
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/looks');
